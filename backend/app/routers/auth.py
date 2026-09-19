@@ -101,7 +101,7 @@ def login(body: LoginRequest, db: Session = Depends(get_db)):
         raise HTTPException(status_code=401, detail="Invalid credentials.")
 
     token = create_access_token(user.id, user.role)
-    return {"access_token": token, "token_type": "bearer", "user": _user_to_out(user)}
+    return {"access_token": token, "session_token": token, "token_type": "bearer", "user": _user_to_out(user)}
 
 
 @router.post("/logout")
